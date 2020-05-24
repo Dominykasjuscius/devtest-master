@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        {% block stylesheets %}
+            <style>
+                body { margin: 0; font-family: sans-serif; }
+                .wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+                menu { margin: 0; padding: 0; display: flex; list-style-type: none; background-color: black; }
+                menu a { display: block; line-height: 50px; padding: 0 20px; text-decoration: none; color: white; }
+                menu a:hover { color: #ddd; }
+            </style>
+        {% endblock %}
+    </head>
+    <body>
+    {% set count = 1 %}
+        <menu>
+            <li><a href="{{ path('todo') }}">Home</a></li>
+            <li><a href="{{ path('shop_list') }}">Products</a>
+            <li><a href="{{ path('cart') }}">Cart ({{ cart_count.count }} items)</a></li>
+{#            <li><a href="{{ path('eur') }}">€</a></li>#}
+{#            <li><a href="{{ path('dol') }}">$</a></li>#}
+{#            <li><a href="{{ path('gbp') }}">£</a></li>#}
+
+        </menu>
+
+        {% block body %}
+        {% endblock %}
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

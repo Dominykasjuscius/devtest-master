@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Product List{% endblock %}
+
+{% block body %}
+<div class="wrapper">
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+    <h1>Products</h1>
+    <table class = "table table-striped">
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>Product</td>
+                <td>Price</td>
+                <td>Description</td>
+                <td>Action</td>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+                <tr>
+                    <td>{{ product.id}}</td>
+                    <td>{{ product.title }}</td>
+                    <td>{{ product.price(1) }}</td>
+                    <td>{{ product.description }}</td>
+                    <td>
+                        <a href = "{{ path('shop_add', {id: product.id}) }}">
+                            Add to cart
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Product List{% endblock %}
+
+{% block body %}
+    <div class="wrapper">
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+        <h1>Cart</h1>
+        <table class = "table table-striped">
+            <thead>
+            <tr>
+                <td>Quantity</td>
+                <td>Product</td>
+                <td>Price</td>
+                    <td>Action</td>
+
+            </tr>
+            </thead>
+            <tbody>
+
+            {% if cart.count > 0 %}
+                {% for product in cart.products %}
+                    <tr>
+                        <td>{{ cart.quantityOfProduct(product)}}</td>
+                        <td>{{ count }}</td>
+                        <td>{{ product.price(1) }}</td>
+                        <td>
+                            <a href = "{{ path('remove', {id: product.id}) }}">
+                                Remove
+                            </a>
+                        </td>
+                        <td style="font-size:30px">
+                            <a href = "{{ path('inc', {id: product.id}) }}">
+                                +
+                            </a>
+                        </td>
+                        <td style="font-size:30px">
+                            <a href = "{{ path('dec', {id: product.id}) }}">
+                                -
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <td>No products in cart</td>
+            {% endif %}
+            </tbody>
+        </table>
+        {% if cart.count > 0 %}
+        <td>Total price: {{ cart.price }}</td>
+        {% endif %}
+    </div>
+{% endblock %}
